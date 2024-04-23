@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertEquals;
 
 public class Assignment01 {
     /*
@@ -27,10 +28,12 @@ public class Assignment01 {
 //        3. Send the request and get the response
         Response response = given().get(url);
 //        response.prettyPrint();
-//        4. Do Assertion
         response.then()
                 .statusCode(200)
                 .contentType(ContentType.JSON)
                 .statusLine("HTTP/1.1 200 OK");
+        //  4. Do Assertion
+        assertEquals(200,response.statusCode());
+        assertEquals("HTTP/1.1 200 OK",response.statusLine());
     }
 }

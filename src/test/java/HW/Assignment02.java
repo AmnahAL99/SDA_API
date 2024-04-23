@@ -44,25 +44,4 @@ public class Assignment02 {
         Assert.assertTrue(Body.contains(""));
 
     }
-    @Test
-    public void test(){
-        /*
-Given Send GET request by adding static import to the class
-Then assert that status code is 200
-And assert that status line is HTTP/1.1 200 OK
- */
-
-        //        1. Set the URL
-        String url = "https://reqres.in/api/users?page=2";
-//        2. Set the expected data
-//        3. Send the request and get the response
-        Response response = given().get(url);
-        response.then()
-                .statusCode(200)
-                .statusLine("HTTP/1.1 200 OK");
-        assertEquals(200,response.statusCode());
-        assertEquals("HTTP/1.1 200 OK",response.statusLine());
-
-
-    }
 }

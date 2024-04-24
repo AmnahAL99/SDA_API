@@ -1,4 +1,4 @@
-package HW;
+package HW.Day01;
 
 import io.restassured.response.Response;
 import org.testng.Assert;

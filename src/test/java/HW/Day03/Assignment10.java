@@ -11,7 +11,7 @@ import pojo.PetPlaceHolderPojo;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
-public class Assignment10 extends SwaggerBaseUrl {
+public class Assignment10 {
     /*
 Write an automation test that will create, read, update, delete a 'pet' using the
  "https://petstore.swagger.io/" document

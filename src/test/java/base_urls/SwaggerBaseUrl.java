@@ -5,7 +5,7 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeMethod;
 
-public class UsersBaseUrl {
+public class SwaggerBaseUrl {
     // We avoid repetitive tasks when sending requests with the RequestSpecification object.
     // For example: repetitive tasks such as base URL and headers.
 
@@ -15,9 +15,8 @@ public class UsersBaseUrl {
     public void setUp() {
         https://reqres.in/api/users
         spec = new RequestSpecBuilder()
-                .setBaseUri("https://reqres.in/api")
+                .setBaseUri("https://petstore.swagger.io/v2")
                 .setContentType(ContentType.JSON)
                 .build();
     }
-
 }

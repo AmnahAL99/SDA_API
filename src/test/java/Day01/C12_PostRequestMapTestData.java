@@ -1,19 +1,17 @@
 package Day01;
 
-import base_urls.JsonPlaceHolderBaseUrl;
-import io.restassured.path.json.JsonPath;
+
+import TestData.JsonPlaceHolderTestData;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
+
 import java.util.Map;
-import java.util.TreeMap;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
-import static org.testng.Assert.assertEquals;
 
-public class C11_PostRequestMap extends JsonPlaceHolderBaseUrl {
+public class C12_PostRequestMapTestData extends JsonPlaceHolderTestData {
 /*
      Given
        1) https://jsonplaceholder.typicode.com/todos
@@ -43,10 +41,7 @@ public class C11_PostRequestMap extends JsonPlaceHolderBaseUrl {
         spec.pathParams("first", "todos");
 
         //Set the expected data(Payload) --> Prepare it as Map
-        Map<String, Object> expectedData = new HashMap<>();
-        expectedData.put("userId",55);
-        expectedData.put("title","Tidy your room");
-        expectedData.put("completed",false);
+        Map<String, Object> expectedData = JsonPlaceHolderTestData.expectedDataMap(55,"Tidy your room", false);
 
         System.out.println("expectedData = " + expectedData);
 
@@ -65,31 +60,6 @@ public class C11_PostRequestMap extends JsonPlaceHolderBaseUrl {
                         "completed", equalTo(expectedData.get("completed")));
 
     }
-    @Test
-    public void test(){
-        spec.pathParam("first","todos");
-        Map<String,Object> expectesData = new HashMap<>();
-        expectesData.put("userId",55);
-        expectesData.put("title","Tidy your room");
-        expectesData.put("completed",false);
-        System.out.println("expectesData is .."+expectesData);
-
-        Response response = given(spec).body(expectesData).post("{first}");
-        response.prettyPrint();
-        //Do assertion
-        JsonPath json = response.jsonPath();
-        assertEquals(201,response.statusCode());
-        assertEquals(expectesData.get("userId"),json.getInt("userId"));
-
-        Map<String,Object> actualData = response.as(Map.class);
-        assertEquals(201,response.statusCode());
-        assertEquals(expectesData.get("userId"),actualData.get("userId"));
-        assertEquals(expectesData.get("title"),actualData.get("title"));
-        assertEquals(expectesData.get("completed"),actualData.get("completed"));
-
-
-
-
-    }
 
 }
+

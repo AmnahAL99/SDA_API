@@ -1,9 +1,6 @@
 package HW.Day03.Pojo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class PetStorePetPojo {
     /**
@@ -27,7 +24,7 @@ public class PetStorePetPojo {
      * }
      */
 
-    private Long id;
+    private Integer id;
     private PetCategoryPojo category;
     private String name;
     private  ArrayList<String> photoUrls;
@@ -38,7 +35,7 @@ public class PetStorePetPojo {
     public PetStorePetPojo() {
     }
 
-    public PetStorePetPojo(Long id, PetCategoryPojo category, String name, ArrayList<String> photoUrls, ArrayList <PetTagPojo> tags, String status) {
+    public PetStorePetPojo(int id, PetCategoryPojo category, String name, ArrayList<String> photoUrls, ArrayList <PetTagPojo> tags, String status) {
         this.id = id;
         this.category = category;
         this.name = name;
@@ -48,11 +45,11 @@ public class PetStorePetPojo {
     }
 
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

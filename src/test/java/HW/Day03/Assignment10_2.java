@@ -29,10 +29,11 @@ public class Assignment10_2 {
     @BeforeClass
     public void beforeMethod() {
         //set the expected data
-        long id = System.currentTimeMillis();
+        //long id = System.currentTimeMillis();
+        Integer id = (int) (System.currentTimeMillis() / 1000);
         petCategoryPojo = new PetCategoryPojo(id, "lion");
         ArrayList<String> photoUrlList = new ArrayList<>();
-        photoUrlList.add("www.emg");
+        photoUrlList.add("https://loremflickr.com/640/480/animals");
         petTagPojo = new PetTagPojo(id, "cute");
         ArrayList<PetTagPojo> tagsList = new ArrayList<>();
         tagsList.add(petTagPojo);

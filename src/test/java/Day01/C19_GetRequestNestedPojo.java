@@ -34,23 +34,25 @@ public class C19_GetRequestNestedPojo extends BookerBaseUrl {
     @Test
     public void getRequestPojoTest() {
         //Set the url
-        // --> You can declare the parameters in request as well
-
+        // --> declare the parameters in request as well
+        spec.pathParams("1","booking","2","444");
         //Set the expected data
         //Start with inner pojo
         BookingDatesPojo bookingDatesPojo = new BookingDatesPojo("2018-01-01", "2019-01-01");
-        BookingPojo expectedData = new BookingPojo("Jane", "Doe", 111, true, bookingDatesPojo, "Extra pillows please");
+        // this sound pojo
+        BookingPojo expectedData = new BookingPojo("John", "Smith", 111, true, bookingDatesPojo, "Breakfast");
         System.out.println("expectedData = " + expectedData);
 
         //Send the request and get the response
-        Response response = given(spec).get("booking/41");//Parameters can be declared directly here
+        Response response = given(spec).get("{1}/{2}");//Parameters can be declared directly here
         response.prettyPrint();
+
 
         //Do assertion
         BookingPojo actualData = response.as(BookingPojo.class);//De-Serialization can not be done without default constructor in corresponding Pojo class
         System.out.println("actualData = " + actualData);
 
-        assertEquals(response.statusCode(), 200);
+        assertEquals(response.statusCode(),200);
         assertEquals(actualData.getFirstname(), expectedData.getFirstname());
         assertEquals(actualData.getLastname(), expectedData.getLastname());
         assertEquals(actualData.getTotalprice(), expectedData.getTotalprice());

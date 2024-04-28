@@ -83,4 +83,5 @@ public class C15_PostRequestNestedMap extends BookerBaseUrl {
         assertEquals(((Map)actualData.get("booking")).get("additionalneeds"),expectedData.get("additionalneeds"));
 
     }
+
 }

@@ -71,6 +71,7 @@ public class FlatPatternPomTests {
         textBox.sendKeys("Selenium");
         passwordField.sendKeys("SomePassword");
         String prop = disabledField.getAttribute("disabled");
+        disabledField.getAttribute("disabled");
         assertTrue(Boolean.parseBoolean(prop));
         submitButton.click();
 

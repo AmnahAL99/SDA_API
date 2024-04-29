@@ -1,15 +1,11 @@
-package Day01;
+package Request;
 
 
-import TestData.JsonPlaceHolderTestData;
-import base_urls.BookerBaseUrl;
 import base_urls.JsonPlaceHolderBaseUrl;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static TestData.JsonPlaceHolderTestData.expectedDataMap;

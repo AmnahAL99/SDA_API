@@ -1,4 +1,4 @@
-package Day01;
+package Request;
 
 
 import TestData.JsonPlaceHolderTestData;

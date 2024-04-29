@@ -36,4 +36,5 @@ public class BookingDatesPojo {
                 ", checkout='" + checkout + '\'' +
                 '}';
     }
+
 }

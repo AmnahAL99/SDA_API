@@ -1,4 +1,4 @@
-package Day01;
+package Request;
 
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.core.IsEqual.equalTo;
 import static org.testng.Assert.*;
 
 public class C03HeaderAndBodyAssertion {

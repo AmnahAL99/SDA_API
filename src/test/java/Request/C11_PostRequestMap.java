@@ -1,4 +1,4 @@
-package Day01;
+package Request;
 
 import base_urls.JsonPlaceHolderBaseUrl;
 import io.restassured.path.json.JsonPath;
@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;

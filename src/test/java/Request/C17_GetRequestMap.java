@@ -1,4 +1,4 @@
-package Day01;
+package Request;
 
 import TestData.RestulTestData;
 import base_urls.BookerBaseUrl;

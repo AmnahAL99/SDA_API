@@ -1,4 +1,4 @@
-package Day01;
+package Request;
 
 import io.restassured.http.Headers;
 import io.restassured.response.Response;

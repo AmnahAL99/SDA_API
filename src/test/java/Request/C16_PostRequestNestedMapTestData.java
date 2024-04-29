@@ -1,4 +1,4 @@
-package Day01;
+package Request;
 
 import TestData.RestulTestData;
 import base_urls.BookerBaseUrl;
@@ -6,12 +6,9 @@ import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import static io.restassured.RestAssured.given;
-import static org.apache.groovy.util.concurrent.concurrentlinkedhashmap.Weighers.map;
 import static org.testng.Assert.assertEquals;
 
 public class C16_PostRequestNestedMapTestData extends BookerBaseUrl {

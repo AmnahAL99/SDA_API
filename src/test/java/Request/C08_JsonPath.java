@@ -1,4 +1,4 @@
-package Day01;
+package Request;
 
 import base_urls.BookerBaseUrl;
 import io.restassured.http.ContentType;

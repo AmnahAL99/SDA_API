@@ -1,16 +1,21 @@
-package Day01;
+package Request;
 
 import base_urls.JsonPlaceHolderBaseUrl;
+import io.restassured.common.mapper.TypeRef;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pojo.BookingPojo;
+import pojo.JsonPlaceHolderPojo;
+import utilities.ObjecyMapperUtilites;
 
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.port;
+import static org.testng.Assert.assertEquals;
+import static utilities.ObjecyMapperUtilites.conversJsonToJava;
 
 public class C09_Groovy extends JsonPlaceHolderBaseUrl {
 /*
@@ -71,4 +76,39 @@ public class C09_Groovy extends JsonPlaceHolderBaseUrl {
         Assert.assertEquals(idWithTitle, 8);
 
     }
+
+    @Test
+    public void test(){
+        spec.pathParams("first", "todos");
+        //Set the expected data
+        String st = """
+                                    {
+                                            "userId": 1,
+                                            "id": 4,
+                                            "title": "et porro tempora",
+                                            "completed": true
+                                    }
+                """;
+        Map<String,Object> payLoad = conversJsonToJava(st, Map.class);
+
+
+        Response response = given(spec).get("{first}");
+        JsonPath jsonPath = response.jsonPath();
+        Object userId = jsonPath.getList("findAll{it.id==4}.userId").get(0);
+        Object title = jsonPath.getList("findAll{it.id==4}.title").get(0);
+        Object completed = jsonPath.getList("findAll{it.id==4}.completed").get(0);
+        //  response.prettyPrint();
+        assertEquals(payLoad.get("userId"), userId);
+        assertEquals(payLoad.get("title"), title);
+        assertEquals(payLoad.get("completed"), completed);
+        //diff way
+        Object actualTodo = jsonPath.getList("findAll{it.id==4}.userId").get(0);
+        System.out.println(actualTodo);
+
+        Map<String, Object> actualTodoMap = (Map) actualTodo;
+        assertEquals(payLoad.get("userId"), actualTodoMap.get("userId"));
+
+    }
+
+
 }

@@ -1,8 +1,6 @@
-package Day01;
+package Request;
 
 import base_urls.BookerBaseUrl;
-import base_urls.JsonPlaceHolderBaseUrl;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 

@@ -92,7 +92,7 @@ public class C27_RevsionExampleTask extends GorstBaseUrl {
 
         // Send Request and get response
         Response response = given(spec).when().get("{1}");
-
+         response.prettyPrint();
         // Do assertions
         response
                 .then()

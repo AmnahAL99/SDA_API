@@ -66,30 +66,4 @@ public class C23_ObjectMapperPostMap extends JsonPlaceHolderBaseUrl {
         assertEquals(actualData.get("completed"), expectedData.get("completed"));
     }
 
-//    @Test
-//      public void test() throws JsonProcessingException {
-//        spec.pathParam("1","todos");
-//        String jsonString = """
-//                   {
-//                                "userId": 55,
-//                                "title": "Tidy your room",
-//                                "completed": false
-//                                }
-//
-//                """;
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        Map<String,Object> payLode = objectMapper.readValue(jsonString, Map.class);
-//
-//        Response response = given(spec).body(payLode).post("{1}");
-//        response.prettyPrint();
-//  // do assersion
-//        Map<String,Object> actualData = new ObjectMapper().readValue(response.asString(), Map.class);
-//      //  System.out.println(actualData);
-//        assertEquals(201,response.statusCode());
-//        assertEquals(payLode.get("userId"),actualData.get("userId"));
-//        assertEquals(payLode.get("title"),actualData.get("title"));
-//        assertEquals(payLode.get("completed"),actualData.get("completed"));
-//
-//
-//    }
 }

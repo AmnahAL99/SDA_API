@@ -39,11 +39,12 @@ public class C10_PostRequestString extends JsonPlaceHolderBaseUrl {
         spec.pathParam("first","todos");
 
         //Set the expected data(Payload) --> Preparing expected data as String is not recommended. Because we can not extract specific field from String body for assertion.
-        String payload ="{\n" +
-                "             \"userId\": 55,\n" +
-                "             \"title\": \"Tidy your room\",\n" +
-                "             \"completed\": false\n" +
-                "          }";
+        String payload = """
+                {
+                             "userId": 55,
+                             "title": "Tidy your room",
+                             "completed": false
+                          }""";
 
         //For serialization, we need to declare content type. This process is repetitive action, to avoid repeation we will put this in spec object.
         Response response = given(spec)

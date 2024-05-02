@@ -8,10 +8,13 @@ import pojo.BookingPojo;
 import pojo.BookingResponsePojo;
 import utilities.ObjecyMapperUtilites;
 
+import java.awt.print.Book;
+
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
 public class CreateBooking extends BookerBaseUrl {
+    static int id ;
 
     /*
    Given
@@ -85,6 +88,10 @@ public class CreateBooking extends BookerBaseUrl {
         assertEquals(payLoad.getBookingdates().getCheckin(), actualData.getBooking().getBookingdates().getCheckin());
         assertEquals(payLoad.getBookingdates().getCheckout(), actualData.getBooking().getBookingdates().getCheckout());
         assertEquals(payLoad.getAdditionalneeds(), actualData.getBooking().getAdditionalneeds());
+
+        id = actualData.getBookingid();
+        System.out.println(id);
+
     }
     @Test
     public void GetBookingTest() {
@@ -124,6 +131,82 @@ public class CreateBooking extends BookerBaseUrl {
         assertEquals(expectedData.getBookingdates().getCheckin(), actualData.getBookingdates().getCheckin());
         assertEquals(expectedData.getBookingdates().getCheckout(), actualData.getBookingdates().getCheckout());
         assertEquals(expectedData.getAdditionalneeds(), actualData.getAdditionalneeds());
+
+    }
+
+    /*
+    Given
+        url: "https://restful-booker.herokuapp.com/booking
+    And
+        body:     {
+                    "firstname" : "Jim",
+                    "lastname" : "Brown",
+                    "totalprice" : 111,
+                    "depositpaid" : true,
+                    "bookingdates" : {
+                        "checkin" : "2018-01-01",
+                        "checkout" : "2019-01-01"
+                    },
+                    "additionalneeds" : "Breakfast"
+                }
+
+    When
+        user send post request
+    Then
+        verify status code is 200
+    And
+        response is like :
+        {
+    "bookingid": 1,
+    "booking": {
+        "firstname": "Jim",
+        "lastname": "Brown",
+        "totalprice": 111,
+        "depositpaid": true,
+        "bookingdates": {
+            "checkin": "2018-01-01",
+            "checkout": "2019-01-01"
+        },
+        "additionalneeds": "Breakfast"
+    }
+}
+
+     */
+    @Test
+    public void testCreate(){
+        spec.pathParams("1","booking");
+        String str = """
+                {
+                                    "firstname" : "Jim",
+                                    "lastname" : "Brown",
+                                    "totalprice" : 111,
+                                    "depositpaid" : true,
+                                    "bookingdates" : {
+                                        "checkin" : "2018-01-01",
+                                        "checkout" : "2019-01-01"
+                                    },
+                                    "additionalneeds" : "Breakfast"
+                                }""";
+
+        BookingPojo paylode = ObjecyMapperUtilites.conversJsonToJava(str,BookingPojo.class);
+
+
+        Response response = given(spec).body(paylode).post("{1}");
+        response.prettyPrint();
+
+        // since i will use the booking id returned in other method i will use jsonPath method
+
+//      int id =  response.jsonPath().getInt("bookingid");
+//        System.out.println(id);
+
+    }
+
+    @Test (dependsOnMethods = "CreateBookingTest")
+    public void testGet(){
+        spec.pathParams("1","booking","2",id);
+        Response response = given(spec).get("{1}/{2}");
+        response.prettyPrint();
+
 
     }
 

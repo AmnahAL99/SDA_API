@@ -81,5 +81,58 @@ public class C15_PostRequestNestedMap extends BookerBaseUrl {
         assertEquals(((Map)actualData.get("booking")).get("additionalneeds"),expectedData.get("additionalneeds"));
 
     }
+        /*
+    Given
+        1) https://restful-booker.herokuapp.com/booking
+        2) {
+            "firstname": "John",
+            "lastname": "Doe",
+            "totalprice": 15,
+            "depositpaid": true,
+            "bookingdates": {
+                "checkin": "2023-03-07",
+                "checkout": "2024-09-25"
+            },
+            "additionalneeds": "Lunch"
+           }
+    When
+        I send POST Request to the Url
+    Then
+        Status code is 200
+        And response body should be like {
+                                            "bookingid": 2243,
+                                            "booking": {
+                                                "firstname": "John",
+                                                "lastname": "Doe",
+                                                "totalprice": 471,
+                                                "depositpaid": true,
+                                                "bookingdates": {
+                                                    "checkin": "2023-03-07",
+                                                    "checkout": "2024-09-25"
+                                                },
+                                                "additionalneeds": "Lunch"
+                                            }
+                                        }
+ */
+    @Test
+    public void test(){
+        spec.pathParams("1","booking");
+        Map<String,String> bookingdates = new HashMap<>();
+        bookingdates.put("checkin","2023-03-07");
+        bookingdates.put("checkout","2024-09-25");
+        Map<String,Object> expectedData = new HashMap<>();
+        expectedData.put("firstname","John");
+        expectedData.put("lastname", "Doe");
+        expectedData.put("totalprice",471);
+        expectedData.put("depositpaid",true);
+        expectedData.put("bookingdates",bookingdates);
+        expectedData.put("additionalneeds","Lunch");
+        Response response = given(spec).body(expectedData).post("{1}");
+        response.prettyPrint();
+
+        Map <String,Object> actula = response.as(Map.class);
+
+
+    }
 
 }

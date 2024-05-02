@@ -3,6 +3,7 @@ package Request;
 import base_urls.JsonPlaceHolderBaseUrl;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -86,7 +87,43 @@ public class C11_PostRequestMap extends JsonPlaceHolderBaseUrl {
         assertEquals(expectesData.get("title"),actualData.get("title"));
         assertEquals(expectesData.get("completed"),actualData.get("completed"));
 
+    }
+    /*
+     Given
+       1) https://jsonplaceholder.typicode.com/todos
+       2)  {
+             "userId": 55,
+             "title": "Tidy your room",
+             "completed": false
+          }
+    When
+        I send POST Request to the Url
 
+    Then
+        Status code is 201
+    And
+        response body is like {
+                                "userId": 55,
+                                "title": "Tidy your room",
+                                "completed": false,
+                                "id": 201
+                                }
+*/
+    @Test
+    public void test01(){
+       spec.pathParams("1","todos");
+       Map<String , Object> expData = new HashMap<>();
+
+       expData.put("userId",55);
+       expData.put("title","Tidy your room");
+       expData.put("completed", false);
+
+       Response response = given(spec).body(expData).post("{1}");
+       response.prettyPrint();
+
+   Map<String,Object> actulData = response.as(Map.class);
+   Assert.assertEquals(response.statusCode(),201);
+        Assert.assertEquals(actulData.get("userId"),expData.get("userId"));
 
 
     }
